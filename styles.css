@@ -1,0 +1,94 @@
+:root {
+    --offset: 15px;
+    --blur: 35px;
+}
+
+body {
+    background: #6dc9e4;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    gap: 10vw;
+}
+
+.card-container {
+    perspective: 1000px;
+}
+
+.image {
+    width: 10vw;
+    filter: drop-shadow(0 0 10px black);
+    transition: 0.2s;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    background-color: #6dc9e4;
+    width: 20vw;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    /*box-shadow: 0 0 30px black, inset 0 0 30px black;*/
+    box-shadow: var(--offset) var(--offset) var(--blur) #28abd1, inset calc(-1 * var(--offset)) calc(-1 * var(--offset)) var(--blur) #28abd1, calc(-1 * var(--offset)) calc(-1 * var(--offset)) var(--blur) #d3f1fa, inset var(--offset) var(--offset) var(--blur) #d3f1fa;
+    transform-style: preserve-3d;
+    transition: 0.2s;
+}
+
+.container > :nth-child(1) > .card {
+    animation: rotate 4s linear infinite;
+}
+
+/*.container > :nth-child(1) > .card > .image{*/
+/*    transform: translateZ(70px);*/
+/*}*/
+
+.card:hover > .image {
+    transform: translateZ(70px);
+}
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+    .image {
+        width: 17vw;
+    }
+    .card {
+        width: 25vw;
+    }
+}
+
+@media (max-width: 400px) {
+    .image {
+        width: 23vw;
+    }
+    .card {
+        width: 35vw;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateX(30deg) rotateY(0deg);
+    }
+    25% {
+        transform: rotateX(0deg) rotateY(30deg);
+    }
+    50% {
+        transform: rotateX(-30deg) rotateY(0deg);
+    }
+    75% {
+        transform: rotateX(0deg) rotateY(-30deg);
+    }
+    100% {
+        transform: rotateX(30deg) rotateY(0deg);
+    }
+}
